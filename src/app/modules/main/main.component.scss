@@ -8,7 +8,7 @@ main {
 .banner-section {
   position: absolute;
   width: calc(100% - 40px);
-  height: 300px;
+  height: 400px;
   border-radius: 30px;
   background-position-y: -350px;
   background-image: url("https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
@@ -17,8 +17,21 @@ main {
 .layout {
   position: absolute;
   width: calc(100% - 40px);
-  height: 300px;
+  height: 400px;
   border-radius: 30px;
   background-color: rgba(0, 0, 0, .4);
   z-index: 3;
+}
+
+.crud-section {
+  position: absolute;
+  padding: 100px 500px;
+  z-index: 5;
+  width: calc(100% - 40px);
+
+  h1 {
+    color: white;
+    font-size: 52px;
+    margin-bottom: 30px;
+  }
 }

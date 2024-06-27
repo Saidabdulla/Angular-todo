@@ -1,0 +1,23 @@
+.add-item {
+  width: 100%;
+  position: relative;
+}
+
+input {
+  width: 100%;
+  height: 56px;
+  padding: 0 100px 0 20px;
+  border-radius: 10px;
+}
+
+.submit-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 20px;
+}
+
+
+::ng-deep .submit-btn .p-button {
+  padding: 8px 16px !important;
+}
