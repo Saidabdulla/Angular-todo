@@ -12,14 +12,14 @@ import { ListComponent } from './modules/main/components/list/list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     MainComponent,
     ListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AddComponent
+    AddComponent,
+    LoginComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
