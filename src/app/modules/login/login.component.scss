@@ -35,3 +35,11 @@
   }
 }
 
+::ng-deep .p-tooltip {
+  z-index: 2000;
+
+  .p-tooltip-text {
+    padding: 8px;
+    font-size: 12px;
+  }
+}

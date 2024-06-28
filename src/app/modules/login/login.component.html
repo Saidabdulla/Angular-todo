@@ -1,13 +1,32 @@
 <div class="bg">
 
-  <form action="">
+  <form [formGroup]="form">
     <h2>Login</h2>
 
-    <input pInputText type="text" placeholder="Start typing..."/>
+    <input
+      formControlName="email"
+      pInputText
+      [pTooltip]="emailErrorText"
+      placeholder="E-mail"
+      tooltipPosition="top"
+      type="text"
+    />
 
-    <input pInputText type="password" placeholder="Start typing..."/>
+    <input
+      formControlName="password"
+      pInputText
+      [pTooltip]="passwordErrorText"
+      placeholder="Password"
+      tooltipPosition="top"
+      type="password"
+    />
 
-    <p-button class="submit-btn" size="small" label="Login"></p-button>
-
+    <p-button
+      (click)="submit()"
+      [disabled]="authService.loading()"
+      class="submit-btn"
+      label="Login"
+      size="small"
+    ></p-button>
   </form>
 </div>
