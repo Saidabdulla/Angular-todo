@@ -4,6 +4,7 @@ import { MainComponent } from "./modules/main/main.component";
 import { LoginComponent } from "./modules/login/login.component";
 import { authGuard } from "./guards/auth.guard";
 import { HttpClientModule } from "@angular/common/http";
+import { provideToastr } from "ngx-toastr";
 
 const routes: Routes = [
   {
@@ -18,7 +19,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes), HttpClientModule],
+  imports: [
+    RouterModule.forRoot(routes),
+    HttpClientModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

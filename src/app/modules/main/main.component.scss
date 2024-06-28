@@ -37,3 +37,14 @@ main {
     margin-bottom: 30px;
   }
 }
+
+::ng-deep .logout-btn {
+  position: absolute;
+  z-index: 1101;
+  right: 50px;
+  top: 40px;
+
+  .p-button {
+    padding: 8px 20px;
+  }
+}

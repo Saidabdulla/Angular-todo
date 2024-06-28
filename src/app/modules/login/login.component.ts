@@ -16,8 +16,9 @@ import { TooltipModule } from 'primeng/tooltip';
     ReactiveFormsModule,
     InputTextModule,
     TooltipModule,
-    ButtonModule
-  ]
+    ButtonModule,
+  ],
+  providers: []
 })
 export class LoginComponent {
   authService = inject(AuthService);

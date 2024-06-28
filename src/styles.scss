@@ -12,3 +12,11 @@
 body {
   margin: 0 !important;
 }
+
+.p-toast-message-content {
+  padding: 10px;
+
+  svg {
+    margin-right: 10px
+  }
+}
