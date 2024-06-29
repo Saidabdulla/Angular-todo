@@ -1,9 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Todo } from "../../../../interfaces/todos";
-import { environment } from "../../../../../environments/environment";
 import { CommonModule } from "@angular/common";
-import { map } from 'rxjs/operators';
+import { TodoService } from "../../../../servies/todo.service";
+import { SkeletonModule } from 'primeng/skeleton';
 
 
 @Component({
@@ -11,35 +11,42 @@ import { map } from 'rxjs/operators';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule, SkeletonModule]
 })
 export class ListComponent implements OnInit {
   http = inject(HttpClient);
+  todoService = inject(TodoService);
 
   todos: Todo[] = [];
 
-  fetchTodos(): void {
-    const url = `${environment.apiUrl}todo/`;
-
-    this.http.get(url).pipe(
-      map((res: any) => {
-        // Sort array with completed: false first, completed: true last
-        return res.results.sort((a: Todo, b: Todo) => {
-          if (a.completed === b.completed) {
-            return 0;
-          } else if (a.completed) {
-            return 1;
-          } else {
-            return -1;
-          }
-        });
-      })
-    ).subscribe((sortedArray: Todo[]) => {
-      this.todos = sortedArray
-    });
-  }
+  isTodoLoading = signal(false);
 
   ngOnInit(): void {
     this.fetchTodos();
+
+    this.todoService.onNewTodo().subscribe((isNewTodoAdded: boolean) => {
+      if (isNewTodoAdded) {
+        this.fetchTodos();
+      }
+    })
+  }
+
+  fetchTodos(): void {
+    this.isTodoLoading.set(true);
+
+    this.todoService.getTodos().subscribe((sortedArray: Todo[]) => {
+      this.todos = sortedArray
+
+      this.isTodoLoading.set(false);
+    });
+  }
+
+
+  updateTodo(todo: Todo) {
+    this.todoService.updateTodo(todo);
+  }
+
+  deleteTodo(todo: Todo) {
+    this.todoService.deleteTodo(todo);
   }
 }

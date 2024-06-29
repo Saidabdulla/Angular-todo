@@ -1,38 +1,64 @@
 <ul>
-  @for (todo of todos; track todo.id) {
-    <li>
-      <button>
-        <svg class="bi bi-check-lg"
-             fill="currentColor"
-             height="16"
-             viewBox="0 0 16 16"
-             width="16"
-             xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
-        </svg>
-      </button>
+  @if (isTodoLoading()) {
+    <p-skeleton width="calc(100% - 20px)" height="3rem"/>
 
-      <div>
-        @if (todo.completed) {
-          <del>{{ todo.title }}</del>
-        } @else {
-          {{ todo.title }}
-        }
+    <p-skeleton width="calc(100% - 20px)" height="3rem"/>
 
-      </div>
+    <p-skeleton width="calc(100% - 20px)" height="3rem"/>
 
-      <button>
-        <svg class="bi bi-x-lg"
-             fill="currentColor"
-             height="16"
-             viewBox="0 0 16 16"
-             width="16"
-             xmlns="http://www.w3.org/2000/svg">
-          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
-        </svg>
-      </button>
-    </li>
+    <p-skeleton width="calc(100% - 20px)" height="3rem"/>
 
-    <hr>
+    <p-skeleton width="calc(100% - 20px)" height="3rem"/>
+
+    <p-skeleton width="calc(100% - 20px)" height="3rem"/>
+
+  } @else {
+    @for (todo of todos; track todo.id) {
+      <li>
+        <button class="edit-btn" (click)="updateTodo(todo)">
+          @if (todo.completed) {
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="16"
+                 height="16"
+                 fill="currentColor"
+                 class="bi bi-dash-lg"
+                 viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/>
+            </svg>
+          } @else {
+            <svg class="bi bi-check-lg"
+                 fill="currentColor"
+                 height="16"
+                 viewBox="0 0 16 16"
+                 width="16"
+                 xmlns="http://www.w3.org/2000/svg">
+              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425z"/>
+            </svg>
+          }
+        </button>
+
+        <div>
+          @if (todo.completed) {
+            <del>{{ todo.title }}</del>
+          } @else {
+            {{ todo.title }}
+          }
+
+        </div>
+
+        <button class="edit-btn" (click)="deleteTodo(todo)">
+          <svg class="bi bi-x-lg"
+               fill="currentColor"
+               height="16"
+               viewBox="0 0 16 16"
+               width="16"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+          </svg>
+        </button>
+      </li>
+
+      <hr>
+    }
   }
 </ul>

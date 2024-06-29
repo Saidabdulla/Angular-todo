@@ -1,5 +1,19 @@
 <div class="add-item">
-  <input pInputText type="text" placeholder="Start typing..."/>
+  <form [formGroup]="form" (keydown.enter)="submit()">
+    <input
+      formControlName="title"
+      pInputText
+      type="text"
+      [pTooltip]="titleErrorMessage"
+      tooltipPosition="top"
+      placeholder="Start typing..."
+    />
 
-  <p-button class="submit-btn" size="small" label="Add"></p-button>
+    <p-button
+      (onClick)="submit()"
+      class="submit-btn"
+      size="small"
+      label="Add"
+    ></p-button>
+  </form>
 </div>

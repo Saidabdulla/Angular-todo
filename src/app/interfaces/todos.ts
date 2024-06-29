@@ -6,10 +6,10 @@ export interface TodosResponse {
 }
 
 export interface Todo {
-  id: string,
+  id?: string,
   title: string,
-  created_at: Date,
-  updated_at: Date,
+  created_at?: Date,
+  updated_at?: Date,
   completed: boolean,
   user: number
 }
